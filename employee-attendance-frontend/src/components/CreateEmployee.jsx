@@ -1,88 +1,4 @@
-/*import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import employeeService from '../service/employee.service';
 
-export const CreateEmployee = () => {
-  const [newEmployee, setNewEmployee] = useState({
-    name: '',
-    department: '',
-    present: true,
-  });
-  const [msg, setMsg] = useState('');
-  const navigation = useNavigate();
-
-  const handleInputChange = e => {
-    setNewEmployee({ ...newEmployee, [e.target.name]: e.target.value });
-  };
-
-  const handleCreateEmployee = e => {
-    e.preventDefault();
-    employeeService
-      .createEmployee(newEmployee)
-      .then(res => {
-        console.log('Employee Created Successfully');
-        setMsg('Employee Created Successfully');
-        setNewEmployee({
-          name: '',
-          department: '',
-          present: true,
-        });
-        navigation('/');
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
-
-  return (
-    <div className="d-flex justify-content-center align-items-center h-100">
-      <div className="form-container">
-        <h2 className="text-center">Create Employee</h2>
-        <form onSubmit={handleCreateEmployee}>
-          <div className="mb-3">
-            <label htmlFor="name" className="form-label">Name:</label>
-            <input
-              type="text"
-              className="form-control"
-              id="name"
-              name="name"
-              value={newEmployee.name}
-              onChange={handleInputChange}
-              maxLength={50} // Set maximum length to 50 characters
-              size={30} // Set size of input field to 30 characters wide
-            />
-          </div>
-          <div className="mb-3">
-            <label htmlFor="department" className="form-label">Department:</label>
-            <input
-              type="text"
-              className="form-control"
-              id="department"
-              name="department"
-              value={newEmployee.department}
-              onChange={handleInputChange}
-              maxLength={50} // Set maximum length to 50 characters
-              size={30} // Set size of input field to 30 characters wide
-            />
-          </div>
-          <div className="mb-3 form-check">
-            <input
-              type="checkbox"
-              className="form-check-input"
-              id="present"
-              name="present"
-              checked={newEmployee.present}
-              onChange={() => setNewEmployee({ ...newEmployee, present: !newEmployee.present })}
-            />
-            <label className="form-check-label" htmlFor="present">Present</label>
-          </div>
-          <button type="submit" className="btn btn-primary">Create Employee</button>
-        </form>
-        {msg && <div className="mt-3 alert alert-success">{msg}</div>}
-      </div>
-    </div>
-  );
-};*/
 
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -119,13 +35,10 @@ export const CreateEmployee = () => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     if (name === "department") {
-      const selectedDepartment = departmentList.find((dep) => 
-        dep.id == value
-      );
-      console.log(selectedDepartment)
+      const selectedDepartment = departmentList.find((dep) => dep.id == value);
       setNewEmployee({ ...newEmployee, department: selectedDepartment });
     } else {
-      setNewEmployee({ ...newEmployee, [e.target.name]: e.target.value });
+      setNewEmployee({ ...newEmployee, [name]: value });
     }
   };
 
@@ -150,9 +63,24 @@ export const CreateEmployee = () => {
       });
   };
 
+  const containerStyle = {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "100vh",
+  };
+
+  const formContainerStyle = {
+    width: "850px",
+    padding: "20px",
+    border: "1px solid #ccc",
+    borderRadius: "5px",
+    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+  };
+
   return (
-    <div className="d-flex justify-content-center align-items-center h-100">
-      <div className="form-container">
+    <div style={containerStyle}>
+      <div style={formContainerStyle} className="form-container">
         <h2 className="text-center">Create Employee</h2>
         <form onSubmit={handleCreateEmployee}>
           <div className="mb-3">
@@ -166,8 +94,8 @@ export const CreateEmployee = () => {
               name="name"
               value={newEmployee.name}
               onChange={handleInputChange}
-              maxLength={50} // Set maximum length to 50 characters
-              size={30} // Set size of input field to 30 characters wide
+              maxLength={50}
+              size={30}
             />
           </div>
           <div className="mb-3">
@@ -176,9 +104,9 @@ export const CreateEmployee = () => {
             </label>
             <select
               id="department"
-              name='department'
+              name="department"
               value={newEmployee.department ? newEmployee.department.id : ""}
-              onChange={(e) => handleInputChange(e)}
+              onChange={handleInputChange}
               required
             >
               <option value="">Select Department</option>
@@ -200,13 +128,13 @@ export const CreateEmployee = () => {
               name="email"
               value={newEmployee.email}
               onChange={handleInputChange}
-              maxLength={50} // Set maximum length to 50 characters
-              size={30} // Set size of input field to 30 characters wide
+              maxLength={50}
+              size={30}
             />
           </div>
           <div className="mb-3">
             <label htmlFor="mobileNumber" className="form-label">
-              MobileNumber:
+              Mobile Number:
             </label>
             <input
               type="text"
@@ -215,8 +143,8 @@ export const CreateEmployee = () => {
               name="mobileNumber"
               value={newEmployee.mobileNumber}
               onChange={handleInputChange}
-              maxLength={50} // Set maximum length to 50 characters
-              size={30} // Set size of input field to 30 characters wide
+              maxLength={50}
+              size={30}
             />
           </div>
           <div className="mb-3 form-check">
