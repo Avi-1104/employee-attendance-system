@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import employeeService from "../service/employee.service";
+// import '../style/Employee.css'
 
 export const Employee = () => {
   const { id } = useParams();
@@ -34,24 +35,30 @@ export const Employee = () => {
   };
 
   return (
-    <div className="d-flex justify-content-center align-items-center h-100">
-      <div className="form-container">
-        <h2 className="text-center">Employee Details</h2>
-        {employee ? (
-          <div>
-            <p><strong>Name:</strong> {employee.name}</p>
-            <p><strong>Department:</strong> {employee.department.name}</p>
-            <p><strong>Email:</strong> {employee.email}</p>
-            <p><strong>Mobile:</strong> {employee.mobileNumber}</p>
-            <p><strong>Present:</strong> {employee.present ? "Yes" : "No"}</p>
-            <div className="mt-3">
-              <Link to={`../updateEmployee/${id}`} className="btn btn-primary me-2">Update</Link>
-              <button onClick={handleDeleteEmployee} className="btn btn-danger">Delete</button>
+    <div className="container mt-8">
+      <div className="row justify-content-center">
+        <div className="col-md-6">
+          <div className="card h-100 w-100">
+            <div className="card-body">
+              <h2 className="card-title text-center mb-4">Employee Details</h2>
+              {employee ? (
+                <div>
+                  <p><strong>Name:</strong> {employee.name}</p>
+                  <p><strong>Department:</strong> {employee.department.name}</p>
+                  <p><strong>Email:</strong> {employee.email}</p>
+                  <p><strong>Mobile:</strong> {employee.mobileNumber}</p>
+                  <p><strong>Present:</strong> {employee.present ? "Yes" : "No"}</p>
+                  <div className="d-flex justify-content-center">
+                    <Link to={`../updateEmployee/${id}`} className="btn btn-primary me-2">Update</Link>
+                    <button onClick={handleDeleteEmployee} className="btn btn-danger">Delete</button>
+                  </div>
+                </div>
+              ) : (
+                <p className="text-center">Loading...</p>
+              )}
             </div>
           </div>
-        ) : (
-          <p>Loading...</p>
-        )}
+        </div>
       </div>
     </div>
   );

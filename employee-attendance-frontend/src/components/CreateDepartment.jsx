@@ -1,7 +1,7 @@
+
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import departmentService from "../service/department.service";
-
 export const CreateDepartment = () => {
   const [newDepartment, setNewDepartment] = useState({
     name: "",
@@ -29,17 +29,17 @@ export const CreateDepartment = () => {
   };
 
   return (
-    <div className="d-flex justify-content-center align-items-center h-100">
-      <div className="form-container">
-        <h2 className="text-center">Create Department</h2>
+    <div style={containerStyle} >
+      <div style={formContainerStyle}>
+        <h2 style={titleStyle}>Create Department</h2>
         <form onSubmit={handleCreateDepartment}>
-          <div className="mb-3">
-            <label htmlFor="name" className="form-label">
+          <div style={inputContainerStyle}>
+            <label htmlFor="name" style={labelStyle}>
               Name:
             </label>
             <input
               type="text"
-              className="form-control"
+              style={inputStyle}
               id="name"
               name="name"
               value={newDepartment.name}
@@ -48,12 +48,67 @@ export const CreateDepartment = () => {
               size={30} // Set size of input field to 30 characters wide
             />
           </div>
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" style={buttonStyle}>
             Create Department
           </button>
         </form>
-        {msg && <div className="mt-3 alert alert-success">{msg}</div>}
+        {msg && <div style={msgStyle}>{msg}</div>}
       </div>
     </div>
   );
+};
+
+const containerStyle = {
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  height: "100vh",
+  // marginBottom:"100vh"
+};
+
+const formContainerStyle = {
+  width: "400px",
+  padding: "20px",
+  borderRadius: "10px",
+  boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
+};
+
+const titleStyle = {
+  fontSize: "1.5rem",
+  textAlign: "center",
+  marginBottom: "20px",
+};
+
+const inputContainerStyle = {
+  marginBottom: "15px",
+};
+
+const labelStyle = {
+  display: "block",
+  marginBottom: "5px",
+};
+
+const inputStyle = {
+  width: "100%",
+  padding: "8px",
+  borderRadius: "5px",
+  border: "1px solid #ccc",
+};
+
+const buttonStyle = {
+  width: "100%",
+  padding: "10px",
+  borderRadius: "5px",
+  border: "none",
+  backgroundColor: "#007bff",
+  color: "#fff",
+  cursor: "pointer",
+};
+
+const msgStyle = {
+  marginTop: "15px",
+  padding: "10px",
+  borderRadius: "5px",
+  backgroundColor: "#28a745",
+  color: "#fff",
 };
