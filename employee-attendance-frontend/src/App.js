@@ -10,13 +10,14 @@ import DepartmentList from './components/DepartmentList';
 import { CreateDepartment } from './components/CreateDepartment';
 import { Employee } from './components/Employee';
 import DepartmentEmployee from './components/DepartmentEmployee';
+import Home from './components/Home';
 const App = () => {
 
   return (
     <>
       <Navbar/>
       <Routes>
-        <Route path='/' element={<EmployeeList/>}/>
+        <Route path='/' element={<Home/>}/>
         <Route path='/createEmployee' element={<CreateEmployee/>}/>
         <Route path='/departmentList' element={<DepartmentList/>}/>
         <Route path='/createDepartment' element={<CreateDepartment/>}/>

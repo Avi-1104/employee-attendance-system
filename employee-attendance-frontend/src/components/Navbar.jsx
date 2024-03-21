@@ -16,7 +16,7 @@ const Navbar = () => {
           </ul>
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <Link to="/" className="nav-link active" aria-current="page" style={{ fontSize: '18px', backgroundColor: 'rgba(204, 229, 255, 0.5)', padding: '10px 15px', borderRadius: '5px', margin: '0 5px', transition: 'background-color 0.3s ease' }} >
+              <Link to="/employeeList" className="nav-link active" aria-current="page" style={{ fontSize: '18px', backgroundColor: 'rgba(204, 229, 255, 0.5)', padding: '10px 15px', borderRadius: '5px', margin: '0 5px', transition: 'background-color 0.3s ease' }} >
                 Employee List
               </Link>
             </li>
